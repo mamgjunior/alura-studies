@@ -8,6 +8,15 @@ import style from "./App.module.scss";
 
 function App() {
   const [tarefas, setTarefas] = useState<Array<ITarefa>>([]);
+  const [selecionado, setSelecionado] = useState<ITarefa>();
+
+  function selecionarTarefa(tarefaSelecionada: ITarefa) {
+    setSelecionado(tarefaSelecionada);
+    setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => ({
+      ...tarefa,
+      selecionado: tarefa.id === tarefaSelecionada.id ? true : false
+    })));
+  }
 
   return (
     <div className={style.AppStyle}>
@@ -16,8 +25,11 @@ function App() {
       />
       <Lista 
         tarefas={tarefas}
+        selecionarTarefa={selecionarTarefa}
       />
-      <Cronometro />
+      <Cronometro 
+        selecionado={selecionado}
+      />
     </div>
   );
 }
