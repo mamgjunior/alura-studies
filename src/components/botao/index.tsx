@@ -3,7 +3,7 @@ import style from "./Botao.module.scss";
 
 interface Props {
     children?: React.ReactNode,
-    type?: "button" | "submit" | "reset" | undefined,
+    type?: "button" | "submit" | "reset",
     onClick?: () => void
 }
 
