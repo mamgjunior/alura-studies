@@ -7,7 +7,8 @@ const Time = ({
   time,
   colaboradores,
   aoDeletar,
-  mudarCor
+  mudarCor,
+  aoFavoritar
 }) => {
   const css = { backgroundColor: hexToRgba(time.cor, '0.6') }
 
@@ -35,6 +36,7 @@ const Time = ({
                 corDeFundo={time.cor}
                 colaborador={colaborador}
                 aoDeletar={aoDeletar}
+                aoFavoritar={aoFavoritar}
               />
             )
           })
