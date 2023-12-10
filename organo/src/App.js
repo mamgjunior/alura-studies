@@ -43,7 +43,7 @@ function App() {
     }
   ]);
 
-  const [colaboradores, setColaboradores] = useState([
+  const inicial = [
     {
       id: uuidv4(),
       nome: 'JULIANA AMOASEI',
@@ -212,15 +212,17 @@ function App() {
       imagem: 'https://www.alura.com.br/assets/img/lideres/paulo-silveira.1647533644.jpeg',
       time: times[5].nome
     },
-  ]);
+  ];
+
+  const [colaboradores, setColaboradores] = useState(inicial);
 
   const aoNovoColaboradorAdicionado = (colaborador) => {
     debugger
     setColaboradores([...colaboradores, colaborador])
   }
 
-  const deletarColaborador = () => {
-    console.log('clickou aqui...');
+  const deletarColaborador = (id) => {
+    setColaboradores(colaboradores.filter(element => element.id !== id));
   }
 
   const mudarCorDoTime = (cor, id) => {
@@ -233,15 +235,20 @@ function App() {
     );
   }
 
+  const cadastrarTime = (novoTime) => {
+    setTimes([...times, { ...novoTime, id: uuidv4() }]);
+  }
+
   return (
     <div
       className="App"
     >
       <Banner />
 
-      <Formulario
+      <Formulario        
         times={times.map(time => time.nome)}
         aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}
+        aoCadastrarTime={cadastrarTime}
       />
 
       {
