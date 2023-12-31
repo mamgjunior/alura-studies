@@ -1,6 +1,6 @@
 import styles from './Banner.module.css';
 import circuloColorido from 'assets/circulo_colorido.png';
-import minhaFoto from 'assets/minha_foto.png';
+import minhaFoto from 'assets/marcos-under.jpg';
 
 export default function Banner() {
   return (
@@ -10,7 +10,7 @@ export default function Banner() {
           Olá, Mundo!
         </h1>
         <p className={styles.paragrafo}>
-          Boas vindas ao meu espaço pessoal! Eu sou Antonio Evaldo. Instrutor de Front-end da alura. Aqui compartilho vários conhecimentos. Espero que aprenda algo novo :)
+          Boas vindas ao meu espaço pessoal! Eu sou Marcos Maia. Instrutor de Front-end da alura. Aqui compartilho vários conhecimentos. Espero que aprenda algo novo :)
         </p>
       </div>
 
@@ -19,6 +19,7 @@ export default function Banner() {
           className={styles.circuloColorido}
           src={circuloColorido}
           aria-hidden={true}
+          alt='Apenas um circulo'
         />
 
         <img
