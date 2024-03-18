@@ -7,11 +7,13 @@ export default function Extrato({ transacoes }) {
     <section className={estilos.container}>
       <h2 className={estilos.titulo}>Extrato</h2>
       <ul>
-        {transacoes.map((transacao, indice) => {
-          return (
-            <Transacoes key={indice} transacao={transacao} estilos={estilos} />
-          );
-        })}
+        {
+          transacoes.map((transacao, indice) => {
+            return (
+              <Transacoes key={indice} transacao={transacao} estilos={estilos} />
+            );
+          })
+        }
       </ul>
     </section>
   );

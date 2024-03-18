@@ -13,6 +13,7 @@ describe("Must render an input field", () => {
     act(() => {
       render(<Formulario />);
     });
+
     const campoTexto = screen.getByPlaceholderText("Digite um valor");
     expect(campoTexto).toBeInTheDocument();
   });
@@ -21,6 +22,7 @@ describe("Must render an input field", () => {
     act(() => {
       render(<Formulario />);
     });
+
     const campoTexto = screen.getByPlaceholderText("Digite um valor");
     expect(campoTexto).toHaveAttribute("type", "number");
   });
@@ -29,10 +31,29 @@ describe("Must render an input field", () => {
     act(() => {
       render(<Formulario />);
     });
+
     const campoTexto = screen.getByPlaceholderText("Digite um valor");
+
     act(() => {
       userEvent.type(campoTexto, "50");
     });
+
     expect(campoTexto).toHaveValue(50);
   });
+});
+
+it("Deve chamar um evento de onSubmit ao clicar em realizar transação", () => {
+  const realizarTransacao = jest.fn();
+
+  act(() => {
+    render(<Formulario realizarTransacao={realizarTransacao} />);
+  });
+
+  const botao = screen.getByRole("button");
+
+  act(() => {
+    userEvent.click(botao);
+  });
+
+  expect(realizarTransacao).toHaveBeenCalledTimes(1);
 });
