@@ -30,4 +30,18 @@ describe('Rotas', () => {
     const meusCartoes = screen.getByText('Meus cartões');
     expect(meusCartoes).toHaveTextContent('Meus cartões');
   });
+
+  test('Deve renderizar a localização atual', () => {
+    const rota = '/cartoes';
+    act(() => {
+      render(
+        <MemoryRouter initialEntries={[rota]}>
+          <App />
+        </MemoryRouter>
+      );
+    });
+
+    const localizacaoAtual = screen.getByTestId('local');
+    expect(localizacaoAtual).toHaveTextContent(rota);
+  });
 });
