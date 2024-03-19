@@ -1,6 +1,7 @@
 import { act, render, screen } from '@testing-library/react';
 import App from '../paginas/Principal/App';
 import Cartoes from '../componentes/Cartoes';
+import AppRoutes from '../routes';
 import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router-dom';
 
 describe('Rotas', () => {
@@ -33,6 +34,7 @@ describe('Rotas', () => {
 
   test('Deve renderizar a localização atual', () => {
     const rota = '/cartoes';
+
     act(() => {
       render(
         <MemoryRouter initialEntries={[rota]}>
@@ -43,5 +45,20 @@ describe('Rotas', () => {
 
     const localizacaoAtual = screen.getByTestId('local');
     expect(localizacaoAtual).toHaveTextContent(rota);
+  });
+
+  test('Deve renderizar a página 404', () => {
+    const rota = '/extrato';
+
+    act(() => {
+      render(
+        <MemoryRouter initialEntries={[rota]}>
+          <AppRoutes />
+        </MemoryRouter>
+      );
+    });
+
+    const paginaErro = screen.getByTestId('pagina-404');
+    expect(paginaErro).toContainHTML('<h1>Ops! Não encontramos a página</h1>');
   });
 });
