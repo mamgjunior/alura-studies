@@ -23,12 +23,28 @@ const mockRequisicao = (retorno) => {
   });
 };
 
+const mockRequisicaoError = () => {
+  return new Promise((_, reject) => {
+    setTimeout(() => {
+      reject();
+    }, 200);
+  });
+};
+
 describe('Requisição para API', () => {
   test('Deve retornar uma lista de transações', async () => {
     api.get.mockImplementation(() => mockRequisicao(mockTransacao));
 
     const transacoes = await buscaTransacoes();
     expect(transacoes).toEqual(mockTransacao);
+    expect(api.get).toHaveBeenCalledWith('/transacoes');
+  });
+
+  test('Deve retornar uma lista vazia quando a requisição falhar', async () => {
+    api.get.mockImplementation(() => mockRequisicaoError());
+
+    const transacoes = await buscaTransacoes();
+    expect(transacoes).toEqual([]);
     expect(api.get).toHaveBeenCalledWith('/transacoes');
   });
 });
